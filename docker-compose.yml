@@ -1,6 +1,8 @@
 services:
+  # 1. Database Service
   db:
-    image: postgres:16-alpine
+    image: postgres:15-alpine
+    container_name: postgres_db
     environment:
       POSTGRES_USER: taskuser
       POSTGRES_PASSWORD: taskpassword
@@ -15,17 +17,31 @@ services:
       timeout: 5s
       retries: 5
 
+  # 2. FastAPI Backend Service
   backend:
-    build:
-      context: ./services/backend
-      dockerfile: Dockerfile
-    environment:
-      DATABASE_URL: postgresql://taskuser:taskpassword@db:5432/taskdb
+    build: ./services/backend
+    container_name: fastapi_backend
     ports:
       - "8000:8000"
+    volumes:
+      - ./services/backend/app:/app/app
+    env_file:
+      - ./services/backend/.env
     depends_on:
       db:
         condition: service_healthy
+
+  # 3. React Frontend Service (Node.js Dev Mode)
+  frontend:
+    build: ./services/Frontend
+    container_name: react_node_frontend
+    ports:
+      - "8080:5173"
+    volumes:
+      - ./services/Frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
