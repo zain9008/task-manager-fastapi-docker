@@ -11,9 +11,10 @@ app = FastAPI(title="Task Manager API")
 
 origins = os.getenv("CORS_ORIGINS", "http://localhost:8080").split(",")
 
+ # Purana origins aur app.add_middleware hata kar yeh paste karein:
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # Yeh wildcard har kisam ke frontend URL ko allow karega
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
