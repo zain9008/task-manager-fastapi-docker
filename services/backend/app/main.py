@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import inspect, text
@@ -8,7 +9,7 @@ from . import models, schemas
 
 app = FastAPI(title="Task Manager API")
 
-#  origins = os.getenv("CORS_ORIGINS", "http://localhost:8080").split(",")
+origins = os.getenv("CORS_ORIGINS", "http://localhost:8080").split(",")
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,11 +18,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# App startup handler to create and seed tables
-@app.on_event("startup")
-def startup():
-    Base.metadata.create_all(bind=engine)
 
     # create_all does not add columns to tables that already exist.
     if "is_deleted" not in {column["name"] for column in inspect(engine).get_columns("tasks")}:
