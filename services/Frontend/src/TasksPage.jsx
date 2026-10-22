@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000') + '/tasks';
+ const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000') + '/tasks';
 
 function TasksPage() {
   const [tasks, setTasks] = useState([]);
