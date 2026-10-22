@@ -19,6 +19,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.on_event("startup")
+def initialize_database():
+    Base.metadata.create_all(bind=engine)
+
     # create_all does not add columns to tables that already exist.
     if "is_deleted" not in {column["name"] for column in inspect(engine).get_columns("tasks")}:
         with engine.begin() as connection:
