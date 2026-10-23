@@ -145,7 +145,7 @@ function TasksPage() {
           </div>
         ))
       )}
-    </div>
+    </div> 
   );
 }
 

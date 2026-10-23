@@ -1,0 +1,30 @@
+/* Main wrapper div ki styling */
+.app-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Navigation bar ki styling */
+.nav-bar {
+  margin-bottom: 20px;
+}
+
+/* Sabhi links ki basic styling */
+.nav-link {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* Jo link active NAHI hai uski styling (Default State) */
+.nav-link.inactive {
+  color: #333;
+  background-color: #e9ecef;
+}
+
+/* Jo link ACTIVE hai uski styling */
+.nav-link.active {
+  color: #fff;
+  background-color: #007bff;
+}

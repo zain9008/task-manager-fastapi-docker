@@ -19,7 +19,7 @@ export const addTask = (title, description) =>
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ title, description, completed: false }),
   });
-
+  
 export const updateTaskStatus = (task) => 
   request(`${API_URL}/${task.id}`, {
     method: 'PUT',

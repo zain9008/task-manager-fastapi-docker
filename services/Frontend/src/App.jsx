@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+ import React, { useState, useEffect } from 'react';
 import TasksPage from './TasksPage';
 import AboutPage from './AboutPage';
+import './App.css'; // 👈 CSS file ko yahan import kiya
 
-// URL ke hash se page badalta hai: About pehla (default) page hai, Tasks #/tasks par
+// URL ke hash se page badalta hai
 const getPage = () => (window.location.hash === '#/tasks' ? 'tasks' : 'about');
 
 function App() {
@@ -14,22 +15,27 @@ function App() {
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
-  const linkStyle = (active) => ({
-    marginRight: '10px',
-    padding: '6px 12px',
-    borderRadius: '4px',
-    textDecoration: 'none',
-    color: active ? '#fff' : '#333',
-    backgroundColor: active ? '#007bff' : '#e9ecef',
-  });
-
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <nav style={{ marginBottom: '20px' }}>
-        <a href="#/" style={linkStyle(page === 'about')}>ℹ️ About</a>
-        <a href="#/tasks" style={linkStyle(page === 'tasks')}>📋 Tasks</a>
+    <div className="app-container">
+      <nav className="nav-bar">
+        {/* Agar page 'about' hai to active class lagegi, nahi to inactive */}
+        <a 
+          href="#/" 
+          className={`nav-link ${page === 'about' ? 'active' : 'inactive'}`}
+        >
+          ℹ️ About
+        </a>
+        
+        {/* Agar page 'tasks' hai to active class lagegi, nahi to inactive */}
+        <a 
+          href="#/tasks" 
+          className={`nav-link ${page === 'tasks' ? 'active' : 'inactive'}`}
+        >
+          📋 Tasks
+        </a>
       </nav>
 
+      {/* Conditional Rendering */}
       {page === 'tasks' ? <TasksPage /> : <AboutPage />}
     </div>
   );
