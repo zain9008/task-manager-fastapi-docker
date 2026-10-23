@@ -1,0 +1,40 @@
+.about-container {
+  font-family: Arial, sans-serif;
+}
+
+/* Card classes jo alag-alag divs par use ho rahi thin */
+.about-card {
+  background: #f4f4f4;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 4px;
+}
+
+.about-card h3 {
+  margin-top: 0;
+}
+
+.developer-text {
+  margin: 0;
+}
+
+.api-docs-text {
+  margin-bottom: 0;
+}
+
+/* API Table ke liye styles */
+.api-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.api-table th {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.api-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
